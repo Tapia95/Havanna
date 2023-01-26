@@ -1,0 +1,50 @@
+
+body{
+
+    font-family: $fontOswald;
+    font-weight: 200;
+    background-color: $color-light;
+    letter-spacing: .05rem;
+
+    section{
+        background-color: $color-gold;
+    }
+    
+    .sideways {
+        display: block;
+        margin: 8rem 0;
+    }
+}
+
+.bg-light{
+    background-color: $color-light !important; 
+}
+
+.lead-xl{
+    font-size: 1.75rem;
+
+}
+
+.lead{
+    font-size: 1.2rem;
+}
+
+.border-right {
+    border-right: 1px solid $color-red2 !important;
+}
+
+.bg-dark{
+    background-color: $color-dark !important;
+}
+
+$redes: (
+    facebook:rgb(68, 68, 221),
+    instagram: rgb(228, 114, 133),
+    twitter: skyblue
+);
+
+@each $redsocial, $coloredered in $redes{
+    .fa-#{$redsocial}:hover{
+        color: $coloredered;
+    }
+}

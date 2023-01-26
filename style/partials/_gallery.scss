@@ -1,0 +1,178 @@
+.gallery-title{
+     text-align: center;
+     font-size: 3rem;
+     padding: .8em 0 .4em;
+    
+}
+
+@mixin tamaños($alto,$ancho){
+    height: $alto;
+    width: $ancho;
+ }
+
+@mixin flex ($direction,$justify,$align){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin gallery-before{
+    content: "";
+    transition: transform 2s;
+    transform: scaleY(0);
+}
+
+@mixin gallery-animation{
+    color: $color-light;
+    @include flex(row,center,center);
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $color-blue;
+    transform: scaleY(1);
+    transition: transform .4s;
+            
+        
+    
+}
+.gallery{
+    padding-bottom: 3em;
+    padding-top: 1em;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 160px;
+    grid-template-areas: "img1 img1 img2 img3" "img1 img1 img4 img4" "img5 img5 img6 img7" "img5 img5 img8 img8";
+    gap: .8em;
+
+    .gallery_picture{
+        position:relative;
+        cursor:pointer;
+        overflow: hidden;
+       
+        .gallery_img{
+            @include tamaños(100%,100%);
+            object-fit:cover;
+        }
+    }
+
+    // .gallery-picture-img1{
+    //     &::before{
+    //        @include gallery-before();
+    //     }
+    //      &:hover::before{
+    //         content: "Cafés,lattes y frappés.";
+    //        @include gallery-animation();
+            
+    //     }
+    // }
+    // .gallery-picture-img2{
+    //     &::before{
+    //        @include gallery-before();
+    //     }
+    //      &:hover::before{
+    //         content: "Barritas de cereal de distintos sabores.";
+    //        @include gallery-animation();
+            
+    //     }
+    // }
+    // .gallery-picture-img3{
+    //     &::before{
+    //        @include gallery-before();
+    //     }
+    //      &:hover::before{
+    //         content: "Delicioso Dulce de leche.";
+    //        @include gallery-animation();
+            
+    //     }
+    // }
+    // .gallery-picture-img4{
+    //     &::before{
+    //        @include gallery-before();
+    //     }
+    //      &:hover::before{
+    //         content: "Havannets - Bocado de dulce de leche cubierto con chocolate.";
+    //        @include gallery-animation();
+            
+    //     }
+    // }
+    // .gallery-picture-img5{
+    //     &::before{
+    //        @include gallery-before();
+    //     }
+    //      &:hover::before{
+    //         content: "Alfajores - Dos tapas rellenas con dulce de leche bañados en chocolate o merengue italiano.";
+    //        @include gallery-animation();
+            
+    //     }
+    // }
+    // .gallery-picture-img6{
+    //     &::before{
+    //        @include gallery-before();
+    //     }
+    //      &:hover::before{
+    //         content: "Haireado - Sandwich de tapas aireadas.";
+    //        @include gallery-animation();
+            
+    //     }
+    // }
+    // .gallery-picture-img7{
+    //     &::before{
+    //        @include gallery-before();
+    //     }
+    //      &:hover::before{
+    //         content: "Galletas de Limon - Dos tapas rellenas con crema de limon, con y sin baño de chocolate.";
+    //        @include gallery-animation();
+            
+    //     }
+    // }
+    // .gallery-picture-img8{
+    //     &::before{
+    //        @include gallery-before();
+    //     }
+    //      &:hover::before{
+    //         content: "Mini Alfajores - Mini galletas rellenas con dulce de leche bañadas en chocolate.";
+    //        @include gallery-animation();
+            
+    //     }
+    // }
+    
+    $text: (
+        img1: "Cafés,lattes y frappés.",
+        img2:"Barritas de cereal de distintos sabores.",
+        img3: "Delicioso Dulce de leche.",
+        img4: "Havannets - Bocado de dulce de leche cubierto con chocolate.",
+        img5: "Alfajores - Dos tapas rellenas con dulce de leche bañados en chocolate o merengue italiano.",
+        img6: "Haireado - Sandwich de tapas aireadas.",
+        img7: "Galletas de Limon - Dos tapas rellenas con crema de limon, con y sin baño de chocolate.", 
+        img8: "Mini Alfajores - Mini galletas rellenas con dulce de leche bañadas en chocolate.",
+    );
+
+    @each $img, $texted in $text{
+        .gallery-picture-#{$img}{
+            &::before{
+             @include gallery-before();
+            }
+            &:hover::before{
+            content: $texted;
+            @include gallery-animation();
+                    
+            }
+
+        };
+
+        
+    }
+    
+    @each $img in (img1,img2,img3,img4,img5,img6,img7,img8){
+        .gallery-picture-#{$img}{
+        grid-area: $img;
+        }
+    }
+
+}
